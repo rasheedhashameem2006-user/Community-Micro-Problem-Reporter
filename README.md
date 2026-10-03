@@ -2,88 +2,140 @@
 
 ## 📌 Project Overview
 
-**Community Micro-Problem Reporter** is a simple AI-assisted web application designed to help people report small but important problems in their local communities.
+**Community Micro-Problem Reporter** is a web-based application designed to help people report small but important problems in their local communities.
 
-The system allows users to submit reports about issues such as garbage, road problems, flooding, and street-light problems. The submitted reports are stored in a database and can be viewed and managed through an admin dashboard.
+The system allows users to submit reports about community issues such as garbage, potholes, roadway flooding, and street-light problems. Submitted reports are stored in a database and can be monitored and managed through a separate Admin Dashboard.
 
-The project aims to provide a simple digital platform for collecting, organizing, and monitoring community-level problems.
+The project provides a simple digital platform for collecting, organizing, analyzing, and managing community-level problems.
 
 ---
 
 ## 🎯 Objectives
 
-* Provide an easy way for users to report community problems.
+* Provide an easy way for citizens to report local community problems.
 * Store submitted reports in a structured database.
 * Categorize different types of community issues.
-* Allow administrators to view and manage reports.
-* Track the status of reported problems.
-* Provide statistics and visualizations about reported issues.
+* Automatically assign the relevant department.
+* Assign priority and severity levels.
 * Detect potentially duplicate reports.
-* Create a foundation that can be extended with AI-based image classification in the future.
+* Allow administrators to monitor submitted reports.
+* Track the status of reported problems.
+* Provide statistics and visualizations.
+* Support future AI-based problem detection.
 
 ---
 
 ## 🚀 Features
 
-### 👤 User Features
+### 👤 User Reporting
 
-* Submit a community problem report.
+Users can:
+
+* Submit a community problem.
 * Select the problem category.
-* Enter the location of the problem.
-* Add a description of the issue.
-* Receive confirmation after submitting a report.
-* Get a warning when a similar report may already exist.
+* Enter the location.
+* Describe the problem.
+* Select priority.
+* Select severity.
+* Submit the report through the Streamlit interface.
 
-### 🔐 Admin Features
+After submission, the report is stored in the database.
 
-* View all submitted reports.
-* Search and filter reports.
-* View report statistics.
-* Visualize problem categories using charts.
+---
+
+### 🔐 Admin Dashboard
+
+The project includes a **separate Admin Dashboard** for managing submitted reports.
+
+Administrators can:
+
+* View submitted reports.
+* Search reports.
+* Filter reports.
+* Monitor problem categories.
+* View priority and severity information.
 * Monitor report status.
+* Analyze reports using charts.
 * Manage community problem information.
 
-### 📊 Dashboard
+The Admin Dashboard is implemented in:
 
-The application provides statistics and visualizations such as:
+```text
+admin_dashboard.py
+```
 
-* Total number of reports.
-* Number of reports by problem type.
-* Number of reports by status.
-* Location-based report information.
-* Distribution of different community problems.
+---
+
+### 🔎 Duplicate Report Detection
+
+The system performs a basic duplicate-report check before saving a new report.
+
+It compares:
+
+* Problem type
+* Location
+* Description similarity
+
+If a sufficiently similar report already exists, the system displays a warning to help reduce duplicate submissions.
+
+---
+
+### 📊 Analytics Dashboard
+
+The application provides analytical information about submitted reports.
+
+The dashboard includes:
+
+* Total reports
+* High-priority reports
+* High-severity reports
+* Resolved reports
+* Most reported problem
+* Problem-wise reports
+* Severity-wise reports
+* Priority-wise reports
+* Department-wise reports
+* Status-wise reports
+* Location-wise reports
+
+---
+
+### 🔍 Search and Filtering
+
+Reports can be searched using:
+
+* Report ID
+* Problem type
+* Location
+* Description
+
+Reports can also be filtered by:
+
+* Problem
+* Department
+* Priority
+* Severity
+* Status
+
+---
+
+### ⬇️ Report Export
+
+Filtered reports can be exported as a CSV file for further analysis and record keeping.
 
 ---
 
 ## 🧩 Problem Categories
 
-The project can work with categories such as:
+The current project supports categories such as:
 
 * 🗑️ Garbage
 * 🕳️ Pothole
 * 🌧️ Roadway Flooding
-* 💡 Street Light Problems
-* 🌳 Other Community Problems
+* 💡 Street Light
+* 🔧 Other
 
-The categories can be expanded as the project develops.
-
----
-
-## 🤖 AI Component
-
-The project is designed to support AI-based community problem detection.
-
-The initial development uses a small image dataset for experimentation and classification.
-
-Possible future AI functionality includes:
-
-* Image-based problem classification.
-* Automatic identification of community problems.
-* Duplicate image/report detection.
-* Severity estimation.
-* Automatic report categorization.
-
-The current application focuses mainly on the reporting and management workflow.
+Additional categories can be added in future versions.
 
 ---
 
@@ -93,6 +145,7 @@ The current application focuses mainly on the reporting and management workflow.
 Community_Micro_Problem_Reporter/
 │
 ├── app.py
+├── admin_dashboard.py
 ├── database.py
 ├── view_reports.py
 ├── requirements.txt
@@ -109,7 +162,7 @@ Community_Micro_Problem_Reporter/
     └── Processed dataset files
 ```
 
-> Large datasets and generated files should not be uploaded to GitHub. The dataset can be downloaded separately when required.
+> **Note:** Large datasets and generated/processed files should not be uploaded to GitHub. They can be downloaded or generated separately when required.
 
 ---
 
@@ -122,31 +175,31 @@ Community_Micro_Problem_Reporter/
 * **NumPy**
 * **Matplotlib**
 * **Scikit-learn**
-* **Ultralytics YOLO** *(for future/experimental AI functionality)*
+* **Ultralytics YOLO** *(for AI/ML experimentation and future development)*
 
 ---
 
 ## 💻 Installation
 
-### 1. Clone the repository
+### 1. Clone the Repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone 
 ```
 
-### 2. Navigate to the project folder
+### 2. Navigate to the Project
 
 ```bash
 cd Community_Micro_Problem_Reporter
 ```
 
-### 3. Create a virtual environment
+### 3. Create a Virtual Environment
 
 ```bash
 python -m venv venv
 ```
 
-### 4. Activate the virtual environment
+### 4. Activate the Virtual Environment
 
 #### Windows
 
@@ -154,7 +207,7 @@ python -m venv venv
 venv\Scripts\activate
 ```
 
-### 5. Install the required packages
+### 5. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -164,79 +217,114 @@ pip install -r requirements.txt
 
 ## ▶️ Running the Application
 
-Run the Streamlit application using:
+### User Application
+
+Run:
 
 ```bash
 streamlit run app.py
 ```
 
-The application will open in your web browser.
+The application opens in a web browser and allows users to submit community problem reports.
+
+### Admin Dashboard
+
+Run the separate admin dashboard using:
+
+```bash
+streamlit run admin_dashboard.py
+```
+
+The Admin Dashboard allows administrators to view, analyze, and manage submitted reports.
 
 ---
 
 ## 🗄️ Database
 
-The project uses **SQLite** for storing community reports.
+The project uses **SQLite** to store community reports.
 
-The database can contain information such as:
+A report can contain information such as:
 
-* Report ID
-* Problem type
-* Location
-* Description
-* Report status
-* Date/time of submission
+| Field       | Description               |
+| ----------- | ------------------------- |
+| Report ID   | Unique report identifier  |
+| Problem     | Type of community problem |
+| Confidence  | Classification confidence |
+| Department  | Responsible department    |
+| Priority    | Priority level            |
+| Severity    | Severity level            |
+| Location    | Reported location         |
+| Description | Details of the problem    |
+| Status      | Current report status     |
 
-The database is created and managed locally by the application.
+The database is created locally by the application.
 
 ---
 
-## 🔎 Duplicate Report Detection
+## 🔄 Report Status
 
-The application includes a basic duplicate detection mechanism.
+Reports can be tracked using statuses such as:
 
-It compares:
+```text
+Pending
+In Progress
+Resolved
+```
 
-* Problem type
-* Location
-* Description similarity
+This allows administrators to monitor the progress of reported community problems.
 
-If a newly submitted report is sufficiently similar to an existing report, the application displays a warning to help reduce duplicate reports.
+---
+
+## 🤖 AI Component
+
+The project is designed to support AI-based community problem detection.
+
+The initial development can use image datasets for experimentation and classification.
+
+Future AI functionality can include:
+
+* 📷 Image-based problem classification
+* 🤖 Automatic problem identification
+* 🔎 Duplicate image detection
+* 🚨 Problem severity estimation
+* 🏷️ Automatic report categorization
+
+The current system focuses primarily on the reporting, database, analytics, and administration workflow.
 
 ---
 
 ## 📈 Future Enhancements
 
-The project can be further improved by adding:
+Possible future improvements include:
 
-* 📷 Image upload for problem reporting.
-* 🤖 AI-based image classification.
-* 🗺️ Interactive map integration.
-* 📍 Automatic location detection.
-* 🔔 Notifications for report updates.
-* 👥 User authentication.
-* 🏛️ Separate authority/admin accounts.
-* 📱 Mobile-friendly interface.
-* 📊 Advanced analytics.
-* 🚨 Problem severity detection.
-* 🔄 Real-time report status updates.
-* ☁️ Cloud database integration.
+* 📷 Image upload with reports
+* 🤖 AI-based image classification
+* 🗺️ Interactive map integration
+* 📍 Automatic location detection
+* 🔔 Notifications for report updates
+* 👥 User authentication
+* 🔐 Improved administrator authentication
+* 📱 Mobile-friendly interface
+* 📊 Advanced analytics
+* 🚨 Automatic severity detection
+* ☁️ Cloud database integration
+* 🏛️ Integration with local-authority workflows
 
 ---
 
 ## 🌱 Social Impact
 
-Small community problems can often remain unnoticed because there is no simple way to report and track them.
+Small community problems can sometimes remain unnoticed because there is no simple way to report and track them.
 
-This project provides a basic digital platform for making such problems visible and organized.
+The **Community Micro-Problem Reporter** provides a digital platform for collecting and organizing information about such problems.
 
-It can help communities:
+The system can help communities:
 
+* Report local issues systematically.
 * Identify frequently occurring problems.
-* Organize complaints systematically.
-* Track unresolved issues.
-* Analyze common problem areas.
-* Support better community management.
+* Track unresolved reports.
+* Analyze common problem categories.
+* Organize reports for administrative review.
 
 ---
 
@@ -244,20 +332,59 @@ It can help communities:
 
 This project was developed as an **academic and learning-oriented project** to explore:
 
-* Python application development.
-* Streamlit web applications.
-* Database management.
-* Data analysis and visualization.
-* Basic AI/ML integration.
-* Community-focused technology solutions.
+* Python application development
+* Streamlit web application development
+* SQLite database management
+* Data analysis
+* Data visualization
+* Basic AI/ML integration
+* Duplicate report detection
+* Community-focused technology solutions
+
+---
+
+## 📋 Requirements
+
+The main Python dependencies are listed in:
+
+```text
+requirements.txt
+```
+
+Install them using:
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## 🚫 Files Excluded from GitHub
+
+The following files and folders should not be uploaded:
+
+```text
+venv/
+__pycache__/
+*.pyc
+*.db
+community_reports.db
+processed_data/
+train/
+test/
+.vscode/
+.env
+```
+
+These files are either generated locally, contain large datasets, or are not required for the source-code repository.
 
 ---
 
 ## 📜 License
 
-This project is intended for educational and study purposes.
+This project is intended primarily for educational and academic purposes.
 
-You may modify and extend the project for learning and development.
+The project may be modified and extended for learning and development.
 
 ---
 
@@ -265,4 +392,4 @@ You may modify and extend the project for learning and development.
 
 **Community Micro-Problem Reporter**
 
-Developed as an academic project focused on using technology to identify, report, and organize small community problems.
+An academic project focused on using Python, data analysis, databases, and AI-based techniques to support community problem reporting and management.
