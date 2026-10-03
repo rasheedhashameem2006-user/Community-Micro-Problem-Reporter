@@ -184,7 +184,7 @@ Community_Micro_Problem_Reporter/
 ### 1. Clone the Repository
 
 ```bash
-git clone 
+git clone https://github.com/rasheedhashameem2006-user/Community_Micro_Problem_Reporter
 ```
 
 ### 2. Navigate to the Project
